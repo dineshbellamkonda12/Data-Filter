@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+}
+
+.top-header {
+  /* Set height for the hero section */
+  height: 50px;
+  padding: 20px;
+}
+
+/* Apply styles to the top header h1 element */
+.top-header h1 {
+  text-align: center;
+  color: #00000;
+  font-size: 30px;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: #2D106D;
+}
+
+input[type="text"] {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    font-size:18px;
+    padding: 8px 16px;
+    background-color: #2D106D;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.container button {
+  margin-bottom: 9px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Style for the table */
+#testResults table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #0000FF;
+}
+
+/* Style for table header cells (th) */
+#testResults th {
+  cursor: pointer;
+  background-color: #f2f2f2;
+  border: 3px solid #2D106D;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style for table data cells (td) */
+#testResults td {
+  border: 3px solid #2D106D;
+  padding: 8px;
+}
+
+.headers{
+    display: flex;
+}
+
+/* Styling for the modal dialog */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    border-radius: 20px;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 100px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+  position: absolute;
+  top:170px;
+  right: 380px;
+  padding-left: 9px;
+  padding-right: 9px;
+  background-color: black;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+    color: #808080;
+}
+
+/* Style the select box */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+select option {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.container > div {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.container div button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #2D106D;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+
+#initialData,
+#testResults {
+    flex: 1;
+    margin: 5px;
+    overflow: auto;
+}
+
+
+.button-div-results {
+  float: right;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.button-download {
+  background-color: #008000; /* Green */
+}
+
+.button-clearfilter {
+  background-color: #0000FF; /* Blue */
+}
+
+.info-div {
+  display: inline-block;
+  float: left;
+  font-size:18px;
+  margin-top: 40px;
+  margin-right: 5%;
+  margin-bottom: 30px;
+}
+
+.search-container {
+  float: right;
+  margin-right: 50px;
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  font-size: 20px;
+  border: 5px solid #007BFF;
+  border-radius: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:hover {
+  border-color: #007BFF;
+}
+
+.hidden {
+    display: none;
+}
+
+.sort-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+}
+
+
+.sort-icon.asc-icon::before {
+  content: "\25B2"; /* Ascending sort icon */
+}
+
+.sort-icon.desc-icon::before {
+  content: "\25BC"; /* Descending sort icon */
+}
+
+
+/* Styling for the filter icon */
+.filter-icon {
+    font-size:20px;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 40px;
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .container div {
+    width: auto;
+    border: 2px solid #2D106D;
+    border-radius: 20px;
+    padding: 50px;
+  }
+
+  .top-header {
+    margin-bottom: 30px;
+  }
+
+  #filterSelect {
+    width: 90%;
+    border: 2px solid #2D106D; /* Blue border color */
+    border-radius: 5px; /* Rounded border corners */
+    background-color: #FFFFFF; /* White background color */
+    color: #00000;
+  }
+  
+  /* Top dropdown style */
+  .search-container-home {
+    margin: 20px 10px 20px 10px;
+  }
+
+  .button-center {
+    margin-right: 70px;
+  }
+  
+  .info-div {
+    margin-left: 70px;
+  }
+  
+  .search-container {
+    text-align: center;
+  }
+
+}
+  

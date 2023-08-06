@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Tests</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'indexhome.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<div class="top-header">
+    <h1>Chassis Dyno Test Data Viewer</h1>
+</div>
+
+<div class="modal" id="filterModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeFilterModal()">&times;</span>
+        <div class="container" id="filterContainer">
+            <select id="filterSelect" onchange="showDiv()">
+                <option value="" disabled selected hidden>Select options to filter the data</option>
+                <option value="vehicle_ids" style="padding: 5px;">Filter list of tests by vehicle IDs</option>
+                <option value="driver_names">Filter the list of Driver Names by Cell Numbers</option>
+                <option value="drive_trace">Filter the list of tests by Drive Traces</option>
+                <option value="iwr">Filter the list of tests between two IWR Values</option>
+                <option value="totalCOgkm">Filter the list of tests between TotalCOgkm and TotalCO2gkm</option>
+            </select>
+
+            <div class="vehicle_ids hidden">
+                <h4>Select Values</h4>
+                <select id="vehicle_ids" multiple>
+                    
+                </select>
+                <div id="clearFilterDiv" style="display: none;">
+                    <button onclick="clearFilter()">Remove Filter</button>
+                </div>
+                <button onclick="getVehicleTests()">Get list of tests</button>
+            </div>
+
+            <div class="driver_names hidden">
+                <h4>Select Values</h4>
+                <select id="driver_names" multiple>
+                    
+                </select>
+                <button onclick="getDriverTests()">Get Driver Names</button>
+                <div id="clearFilterDiv1" style="display: none;">
+                    <button onclick="clearFilter()">Remove Filter</button>
+                </div>
+            </div>
+
+            <div class="drive_trace hidden">
+                <h4>Select Values</h4>
+                <select id="drive_trace" multiple>
+                    
+                </select>
+                <button onclick="getDriveTrace()">Get list of tests</button>
+                <div id="clearFilterDiv2" style="display: none;">
+                    <button onclick="clearFilter()">Remove Filter</button>
+                </div>
+            </div>
+
+            <div class="iwr hidden">
+                <h4>Enter Values</h4>
+                <label for="minIWR">Min IWR:</label>
+                <input type="number" id="minIWR" name="minIWR">
+                <label for="maxIWR">Max IWR:</label>
+                <input type="number" id="maxIWR" name="maxIWR">
+                <button onclick="iwr()">Get list of tests</button>
+                <div id="clearFilterDiv3" style="display: none;">
+                    <button onclick="clearFilter()">Remove Filter</button>
+                </div>
+            </div>
+
+            <div class="totalCOgkm hidden">
+                <h4>Enter Values</h4>
+                <label for="minTotalCOgkm">Min TotalCOgkm:</label>
+                <input type="number" id="minTotalCOgkm" name="minTotalCOgkm">
+                <label for="maxTotalCOgkm">Max TotalCO2gkm:</label>
+                <input type="number" id="maxTotalCO2gkm" name="maxTotalCO2gkm">
+                <button onclick="totalCOgkm()">Get list of tests</button>
+                <div id="clearFilterDiv4" style="display: none;">
+                    <button onclick="clearFilter()">Remove Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="headers">
+    <div id="testResults">
+        <div id="initialData">
+            <!-- Initial Data Results -->
+        </div>
+    <!-- Filtered Results -->
+    </div>
+</div>
+
+<script src="{% static 'indexhome.js' %}"></script>
+
+</body>
+</html>
