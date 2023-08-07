@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Tests</title>
+    <title>Chasis Dyno Test Data Viewer</title>
     <link rel="stylesheet" type="text/css" href="{% static 'indexhome.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -18,6 +18,7 @@
 <div class="modal" id="filterModal">
     <div class="modal-content">
         <span class="close" onclick="closeFilterModal()">&times;</span>
+        <h2 style = "text-align: center">Filter Data</h2>
         <div class="container" id="filterContainer">
             <select id="filterSelect" onchange="showDiv()">
                 <option value="" disabled selected hidden>Select options to filter the data</option>
@@ -33,10 +34,11 @@
                 <select id="vehicle_ids" multiple>
                     
                 </select>
+                <button onclick="getVehicleTests()" class="closeModal">Get list of tests</button>
+                <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
                 <div id="clearFilterDiv" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
-                <button onclick="getVehicleTests()">Get list of tests</button>
             </div>
 
             <div class="driver_names hidden">
@@ -44,7 +46,8 @@
                 <select id="driver_names" multiple>
                     
                 </select>
-                <button onclick="getDriverTests()">Get Driver Names</button>
+                <button onclick="getDriverTests()" class="closeModal">Get Driver Names</button>
+                <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
                 <div id="clearFilterDiv1" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
@@ -55,7 +58,8 @@
                 <select id="drive_trace" multiple>
                     
                 </select>
-                <button onclick="getDriveTrace()">Get list of tests</button>
+                <button onclick="getDriveTrace()" class="closeModal">Get list of tests</button>
+                <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
                 <div id="clearFilterDiv2" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
@@ -67,7 +71,8 @@
                 <input type="number" id="minIWR" name="minIWR">
                 <label for="maxIWR">Max IWR:</label>
                 <input type="number" id="maxIWR" name="maxIWR">
-                <button onclick="iwr()">Get list of tests</button>
+                <button onclick="iwr()" class="closeModal">Get list of tests</button>
+                <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
                 <div id="clearFilterDiv3" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
@@ -79,7 +84,8 @@
                 <input type="number" id="minTotalCOgkm" name="minTotalCOgkm">
                 <label for="maxTotalCOgkm">Max TotalCO2gkm:</label>
                 <input type="number" id="maxTotalCO2gkm" name="maxTotalCO2gkm">
-                <button onclick="totalCOgkm()">Get list of tests</button>
+                <button onclick="totalCOgkm()" class="closeModal">Get list of tests</button>
+                <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
                 <div id="clearFilterDiv4" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>

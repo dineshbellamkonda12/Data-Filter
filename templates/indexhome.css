@@ -132,12 +132,16 @@ select {
 }
 
 select option {
-  text-align: center;
+  text-align: left;
   padding: 8px 0;
 }
 
 .container > div {
   margin-bottom: 20px;
+}
+
+.container div select option {
+  text-align: center;
 }
 
 label {
@@ -222,6 +226,10 @@ input[type="number"] {
     display: none;
 }
 
+.clearFilterDiv {
+  position: absolute;
+}
+
 .sort-icon {
   display: inline-block;
   width: 10px;
@@ -249,51 +257,3 @@ input[type="number"] {
 
 }
 
-
-@media only screen and (max-width: 768px) {
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-  }
-
-  .container div {
-    width: auto;
-    border: 2px solid #2D106D;
-    border-radius: 20px;
-    padding: 50px;
-  }
-
-  .top-header {
-    margin-bottom: 30px;
-  }
-
-  #filterSelect {
-    width: 90%;
-    border: 2px solid #2D106D; /* Blue border color */
-    border-radius: 5px; /* Rounded border corners */
-    background-color: #FFFFFF; /* White background color */
-    color: #00000;
-  }
-  
-  /* Top dropdown style */
-  .search-container-home {
-    margin: 20px 10px 20px 10px;
-  }
-
-  .button-center {
-    margin-right: 70px;
-  }
-  
-  .info-div {
-    margin-left: 70px;
-  }
-  
-  .search-container {
-    text-align: center;
-  }
-
-}
-  
