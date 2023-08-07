@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chasis Dyno Test Data Viewer</title>
+    <title>Chasis Dyno Test Data Filter</title>
     <!-- Load external CSS files -->
     <link rel="stylesheet" type="text/css" href="{% static 'indexhome.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -14,7 +14,7 @@
 
 <!-- Top header section -->
 <div class="top-header">
-    <h1>Chassis Dyno Test Data Viewer</h1>
+    <h1>Chassis Dyno Test Data Filter</h1>
 </div>
 
 <!-- Filter modal section -->
@@ -98,7 +98,7 @@
 
             <!-- Section for filtering by TotalCOgkm and TotalCO2gkm values -->
             <div class="totalCOgkm hidden">
-                <h4>Enter Values</h4>
+                <h4>Please input values: This filter displays a list of tests where the TotalCOgkm is less than Min TotalCOgkm and the TotalCO2gkm is greater than Max TotalCO2gkm</h4>
                 <label for="minTotalCOgkm">Min TotalCOgkm:</label>
                 <input type="number" id="minTotalCOgkm" name="minTotalCOgkm">
                 <label for="maxTotalCOgkm">Max TotalCO2gkm:</label>

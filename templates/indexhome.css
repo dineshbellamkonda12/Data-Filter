@@ -97,8 +97,8 @@ button:hover {
 .modal-content {
     border-radius: 20px;
     background-color: #fefefe; /* White color */
-    margin: 10% auto;
-    padding: 100px;
+    margin: 5% auto;
+    padding:50px 100px 50px 100px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
@@ -107,7 +107,7 @@ button:hover {
 /* Styling for the close icon in the modal */
 .close {
   position: absolute;
-  top:170px;
+  top:100px;
   right: 380px;
   padding-left: 9px;
   padding-right: 9px;

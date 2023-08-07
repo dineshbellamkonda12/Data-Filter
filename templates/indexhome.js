@@ -128,6 +128,13 @@ async function fetchAndPopulateDropdown(
   }
 }
 
+// Fetch data and populate dropdowns when the DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAndPopulateDropdown("vehicle_ids", "VehicleID");
+  fetchAndPopulateDropdown("driver_names", "Cell");
+  fetchAndPopulateDropdown("drive_trace", "DriveTrace");
+});
+
 // Get all elements with class "closeModal"
 const buttons = document.querySelectorAll(".closeModal");
 
@@ -182,13 +189,6 @@ function totalCOgkm() {
   fetchDataAndDisplay("totalCOgkm", totalCOgkmValue, displayResults);
   document.getElementById("clearFilterDiv4").style.display = "block";
 }
-
-// Fetch data and populate dropdowns when the DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  fetchAndPopulateDropdown("vehicle_ids", "VehicleID");
-  fetchAndPopulateDropdown("driver_names", "Cell");
-  fetchAndPopulateDropdown("drive_trace", "DriveTrace");
-});
 
 
 // Function to handle the click event for multiple select elements in modal options
@@ -306,6 +306,8 @@ function InitialResults(data) {
 
     testResultsDiv.appendChild(table);
   } else {
+    //Error Handling, Display 'Refresh Page' Button and 'No records found text' when no records found
+
     testResultsDiv.innerHTML = ""; // Clear previous content
 
     // Displaying "No Records Found" text in the middle of the page vertically
@@ -458,6 +460,8 @@ function displayData(data, headers) {
     testResultsDiv.appendChild(containerDiv);
     testResultsDiv.appendChild(table);
   } else {
+    //Error Handling, Display 'Remove Filter' Button and 'No records found text' when no records found
+
     testResultsDiv.innerHTML = ""; // Clear previous content
 
     // Displaying "No Records Found" text in the middle of the page vertically
