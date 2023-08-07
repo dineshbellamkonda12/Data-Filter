@@ -37,8 +37,8 @@ Apply the database migrations to create the required tables:
 python manage.py migrate
 
 5. Import Data 
-Run import.py script that inserts CSV data into the inbuilt Django SQLite database:
-python import.py
+Run import_data.py script that inserts CSV data into the inbuilt Django SQLite database:
+python import_data.py
 
 6. Run the Development Server
 Start the Django development server to run the application:
