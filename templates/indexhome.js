@@ -1,6 +1,7 @@
 // Global variable to store the table data
 let tableData = [];
 
+// Global variable to store the headers data
 let headers = [
       "TestName",
       "TestDateTime",
@@ -15,42 +16,50 @@ let headers = [
       "TotalCO2gkm",
   ];
 
+// Function to apply filters on the previous filtered data
 function applyFilters() {
-  // Reset filteredData to the original tableData
-  let filteredData = [...tableData];
+    // Reset filteredData to the original tableData
+    let filteredData = [...tableData];
 
-  // Get the selected filter option
-  const selectedFilter = document.getElementById('filterSelect').value;
+    // Get the selected filter option
+    const selectedFilter = document.getElementById('filterSelect').value;
 
-  if (selectedFilter === 'vehicle_ids') {
-    const vehicle_ids = document.getElementById('vehicle_ids').value.split(',');
-    filteredData = filteredData.filter((item) => vehicle_ids.includes(item.VehicleID.toString()));
-  } else if (selectedFilter === 'driver_names') {
-    const driver_names = document.getElementById('driver_names').value.split(',');
-    filteredData = filteredData.filter((item) => driver_names.includes(item.Cell));
-  } else if (selectedFilter === 'drive_trace') {
-    const drive_traces = document.getElementById('drive_trace').value.split(',');
-    filteredData = filteredData.filter((item) => drive_traces.includes(item.DriveTrace));
-  } else if (selectedFilter === 'iwr') {
-    const minIWR = parseFloat(document.getElementById('minIWR').value);
-    const maxIWR = parseFloat(document.getElementById('maxIWR').value);
-    filteredData = filteredData.filter((item) => item.IWR >= minIWR && item.IWR <= maxIWR);
-  } else if (selectedFilter === 'totalCOgkm') {
-    const minTotalCOgkm = parseFloat(document.getElementById('minTotalCOgkm').value);
-    const maxTotalCO2gkm = parseFloat(document.getElementById('maxTotalCO2gkm').value);
-    filteredData = filteredData.filter((item) => item.TotalCOgkm >= minTotalCOgkm && item.TotalCO2gkm <= maxTotalCO2gkm);
-  }
+    // Apply filters based on the selected option
+    if (selectedFilter === 'vehicle_ids') {
+      // Filter data by vehicle IDs
+      const vehicle_ids = document.getElementById('vehicle_ids').value.split(',');
+      filteredData = filteredData.filter((item) => vehicle_ids.includes(item.VehicleID.toString()));
+    } else if (selectedFilter === 'driver_names') {
+      // Filter data by driver names using cell numbers
+      const driver_names = document.getElementById('driver_names').value.split(',');
+      filteredData = filteredData.filter((item) => driver_names.includes(item.Cell));
+    } else if (selectedFilter === 'drive_trace') {
+      // Filter data by drive traces
+      const drive_traces = document.getElementById('drive_trace').value.split(',');
+      filteredData = filteredData.filter((item) => drive_traces.includes(item.DriveTrace));
+    } else if (selectedFilter === 'iwr') {
+      // Filter data by IWR values
+      const minIWR = parseFloat(document.getElementById('minIWR').value);
+      const maxIWR = parseFloat(document.getElementById('maxIWR').value);
+      filteredData = filteredData.filter((item) => item.IWR >= minIWR && item.IWR <= maxIWR);
+    } else if (selectedFilter === 'totalCOgkm') {
+      // Filter data by TotalCOgkm and TotalCO2gkm values
+      const minTotalCOgkm = parseFloat(document.getElementById('minTotalCOgkm').value);
+      const maxTotalCO2gkm = parseFloat(document.getElementById('maxTotalCO2gkm').value);
+      filteredData = filteredData.filter((item) => item.TotalCOgkm >= minTotalCOgkm && item.TotalCO2gkm <= maxTotalCO2gkm);
+    }
 
-  // Display the filtered data in the table
-  displayData(filteredData, headers);
+    // Display the filtered data in the table
+    displayData(filteredData, headers);
 
-  document.getElementById("clearFilterDiv1").style.display = "block";
-  document.getElementById("clearFilterDiv2").style.display = "block";
-  document.getElementById("clearFilterDiv3").style.display = "block";
-  document.getElementById("clearFilterDiv4").style.display = "block";
-  document.getElementById("clearFilterDiv5").style.display = "block";
+    document.getElementById("clearFilterDiv1").style.display = "block"; //Display clear filter Button
+    document.getElementById("clearFilterDiv2").style.display = "block";
+    document.getElementById("clearFilterDiv3").style.display = "block";
+    document.getElementById("clearFilterDiv4").style.display = "block";
+    document.getElementById("clearFilterDiv5").style.display = "block";
 }
 
+// Function to show/hide filter options based on the selected filter inside the modal
 function showDiv() {
   var select = document.getElementById("filterSelect");
   var selectedValue = select.value;
@@ -67,18 +76,19 @@ function showDiv() {
   }
 }
 
-// Function to open the filter modal
+// Function to open the filter modal by clicking on X button
 function openFilterModal() {
   var filterModal = document.getElementById("filterModal");
   filterModal.style.display = "block";
 }
 
-// Function to close the filter modal
+// Function to close the filter modal by clicking on X button
 function closeFilterModal() {
   var filterModal = document.getElementById("filterModal");
   filterModal.style.display = "none";
 }
 
+// Function to fetch data and display it in the table
 function fetchDataAndDisplay(endpoint, value, displayFunction) {
   const url = `/get_vehicle_tests/?${endpoint}=${value}`;
 
@@ -88,7 +98,7 @@ function fetchDataAndDisplay(endpoint, value, displayFunction) {
     .catch((error) => console.error("An error occurred:", error));
 }
 
-// Function to fetch data and populate dropdowns
+// Function to fetch and populate dropdowns with unique values inside the modal select options
 async function fetchAndPopulateDropdown(
   dropdownId,
   dataKey,
@@ -121,11 +131,12 @@ async function fetchAndPopulateDropdown(
 // Get all elements with class "closeModal"
 const buttons = document.querySelectorAll(".closeModal");
 
-// Add event listeners to each button
+// Add event listeners to each button, when the button is clicked, modal will close and show the filtered data
 buttons.forEach(button => {
   button.addEventListener("click", closeFilterModal);
 });
 
+// Functions to fetch data based on filter options
 function getVehicleTests() {
   const selectedVehicles = Array.from(
     document.getElementById("vehicle_ids").selectedOptions
@@ -179,7 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchAndPopulateDropdown("drive_trace", "DriveTrace");
 });
 
-// Function to handle the click event for multiple select elements
+
+// Function to handle the click event for multiple select elements in modal options
 function handleMultipleSelectClick(element) {
     element.addEventListener("mousedown", function (e) {
         e.preventDefault();
@@ -190,25 +202,26 @@ function handleMultipleSelectClick(element) {
         return false;
     });
 }
-
-// Pass the IDs of the select elements you want to handle
+// Pass the IDs of the select elements you want to handle for multiple select
 const selectIdsToHandle = ["vehicle_ids", "driver_names", "drive_trace"];
-
 // Attach the event listener to each select element
 selectIdsToHandle.forEach(id => {
     const selectElement = document.getElementById(id);
     handleMultipleSelectClick(selectElement);
 });
 
+
 function clearFilter() {
   // Refresh the page to clear the filter
   location.reload();
 }
 
+// Function to display initial results when the page loads for the first time
 function displayInitialResults() {
   return fetch(`/get_all_data/`).then((response) => response.json());
 }
 
+// Fetch data and display initial results
 function InitialResults(data) {
   const testResultsDiv = document.getElementById("initialData");
   testResultsDiv.innerHTML = "";
@@ -244,7 +257,7 @@ function InitialResults(data) {
 
     const infoDiv = document.createElement("div");
     infoDiv.textContent = `Number of Records: ${data.length}`;
-    infoDiv.classList.add("info-div"); // Adding a class to the div
+    infoDiv.classList.add("info-div"); 
 
     // Create a new div for the filter icon
     const filterIconDiv = document.createElement("div");
@@ -323,16 +336,19 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => console.error("Error fetching data:", error));
 });
 
+// Function to display filtered results
 function displayResults(data) {
   headers = headers;
   displayData(data, headers);
 }
 
+// Function to display drivers based on filter
 function displayDrivers(data) {
   const headers = ["Driver"];
   displayData(data, headers);
 }
 
+// Function to filter data based on search input
 function filterTableData(table, headers, searchTerm) {
   const rows = table.getElementsByTagName("tr");
 
@@ -355,6 +371,7 @@ function filterTableData(table, headers, searchTerm) {
   }
 }
 
+// Function to display filtered data in the table
 function displayData(data, headers) {
   // Store the table data in the global variable
   tableData = data;
@@ -464,6 +481,7 @@ function displayData(data, headers) {
   }
 }
 
+// Function to sort table data based on header click
 function sortTableData(table, headers, defaultSortColumn) {
   let columnIndex = headers.indexOf(defaultSortColumn);
   let rows,
@@ -533,6 +551,7 @@ function sortTableData(table, headers, defaultSortColumn) {
   });
 }
 
+// Function to download data as CSV
 function downloadCSV(headers, data) {
   const csvContent = `data:text/csv;charset=utf-8,${headers.join(",")}\n${data
     .map((row) => headers.map((header) => row[header]).join(","))

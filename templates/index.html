@@ -6,20 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chasis Dyno Test Data Viewer</title>
+    <!-- Load external CSS files -->
     <link rel="stylesheet" type="text/css" href="{% static 'indexhome.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 
+<!-- Top header section -->
 <div class="top-header">
     <h1>Chassis Dyno Test Data Viewer</h1>
 </div>
 
+<!-- Filter modal section -->
 <div class="modal" id="filterModal">
     <div class="modal-content">
+        <!-- Close button for the modal -->
         <span class="close" onclick="closeFilterModal()">&times;</span>
         <h2 style = "text-align: center">Filter Data</h2>
+        <!-- Container for filter options -->
         <div class="container" id="filterContainer">
+            <!-- Dropdown to select the filter option -->
             <select id="filterSelect" onchange="showDiv()">
                 <option value="" disabled selected hidden>Select options to filter the data</option>
                 <option value="vehicle_ids" style="padding: 5px;">Filter list of tests by vehicle IDs</option>
@@ -29,63 +35,78 @@
                 <option value="totalCOgkm">Filter the list of tests between TotalCOgkm and TotalCO2gkm</option>
             </select>
 
+             <!-- Section for filtering by vehicle IDs -->
             <div class="vehicle_ids hidden">
                 <h4>Select Values</h4>
                 <select id="vehicle_ids" multiple>
                     
                 </select>
+                <!-- Buttons to interact with the filter -->
                 <button onclick="getVehicleTests()" class="closeModal">Get list of tests</button>
                 <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
+                <!-- Button to remove the filter -->
                 <div id="clearFilterDiv" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
             </div>
 
+            <!-- Section for filtering the driver names by cell numbers -->
             <div class="driver_names hidden">
                 <h4>Select Values</h4>
                 <select id="driver_names" multiple>
                     
                 </select>
+                <!-- Buttons to interact with the filter -->
                 <button onclick="getDriverTests()" class="closeModal">Get Driver Names</button>
                 <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
+                <!-- Button to remove the filter -->
                 <div id="clearFilterDiv1" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
             </div>
 
+            <!-- Section for filtering by drive trace -->
             <div class="drive_trace hidden">
                 <h4>Select Values</h4>
                 <select id="drive_trace" multiple>
                     
                 </select>
+                <!-- Buttons to interact with the filter -->
                 <button onclick="getDriveTrace()" class="closeModal">Get list of tests</button>
                 <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
+                <!-- Button to remove the filter -->
                 <div id="clearFilterDiv2" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
             </div>
 
+            <!-- Section for filtering by IWR values -->
             <div class="iwr hidden">
                 <h4>Enter Values</h4>
                 <label for="minIWR">Min IWR:</label>
                 <input type="number" id="minIWR" name="minIWR">
                 <label for="maxIWR">Max IWR:</label>
                 <input type="number" id="maxIWR" name="maxIWR">
+                <!-- Buttons to interact with the filter -->
                 <button onclick="iwr()" class="closeModal">Get list of tests</button>
                 <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
+                <!-- Button to remove the filter -->
                 <div id="clearFilterDiv3" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
             </div>
 
+            <!-- Section for filtering by TotalCOgkm and TotalCO2gkm values -->
             <div class="totalCOgkm hidden">
                 <h4>Enter Values</h4>
                 <label for="minTotalCOgkm">Min TotalCOgkm:</label>
                 <input type="number" id="minTotalCOgkm" name="minTotalCOgkm">
                 <label for="maxTotalCOgkm">Max TotalCO2gkm:</label>
                 <input type="number" id="maxTotalCO2gkm" name="maxTotalCO2gkm">
+                <!-- Buttons to interact with the filter -->
                 <button onclick="totalCOgkm()" class="closeModal">Get list of tests</button>
                 <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
+                <!-- Button to remove the filter -->
                 <div id="clearFilterDiv4" style="display: none;">
                     <button onclick="clearFilter()">Remove Filter</button>
                 </div>
@@ -94,7 +115,7 @@
     </div>
 </div>
 
-
+<!-- Table to display Initial Data and Filtered Results -->
 <div class="headers">
     <div id="testResults">
         <div id="initialData">
@@ -104,6 +125,7 @@
     </div>
 </div>
 
+<!-- Loading external JavaScript files -->
 <script src="{% static 'indexhome.js' %}"></script>
 
 </body>
