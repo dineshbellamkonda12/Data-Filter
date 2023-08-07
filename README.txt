@@ -43,3 +43,7 @@ python import_data.py
 6. Run the Development Server
 Start the Django development server to run the application:
 python manage.py runserver
+
+## Repository Information
+vehicle_tests -> Django Project
+test_app -> Django App 
