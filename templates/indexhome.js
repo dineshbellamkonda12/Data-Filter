@@ -106,9 +106,7 @@ function fetchDataAndDisplay(endpoint, value, displayFunction)
 // Function to fetch and populate dropdowns with unique values inside the modal select options
 async function fetchAndPopulateDropdown(
   dropdownId,
-  dataKey,
-  optionValueKey,
-  optionTextKey
+  dataKey
 ) {
   try {
     const data = await fetch(`/get_all_data/`).then((response) => response.json()),
