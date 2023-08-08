@@ -1,23 +1,21 @@
-// Global variable to store the table data
-let tableData = [];
-
-// Global variable to store the headers data
-let headers = [
-      "TestName",
-      "TestDateTime",
-      "Cell",
-      "VehicleID",
-      "DriveTrace",
-      "Engineer",
-      "Driver",
-      "IWR",
-      "RMSSE",
-      "TotalCOgkm",
-      "TotalCO2gkm",
-  ];
+// Global variable to store array of table and headers data
+let tableData = [],
+    headers   = [ "TestName",
+                  "TestDateTime",
+                  "Cell",
+                  "VehicleID",
+                  "DriveTrace",
+                  "Engineer",
+                  "Driver",
+                  "IWR",
+                  "RMSSE",
+                  "TotalCOgkm",
+                  "TotalCO2gkm",
+                ];
 
 // Function to apply filters on the previous filtered data
-function applyFilters() {
+function applyFilters() 
+{
     // Reset filteredData to the original tableData
     let filteredData = [...tableData];
 
@@ -60,11 +58,13 @@ function applyFilters() {
 }
 
 // Function to show/hide filter options based on the selected filter inside the modal
-function showDiv() {
-  var select = document.getElementById("filterSelect");
-  var selectedValue = select.value;
+function showDiv() 
+{
+  var allDivs,
+      select        = document.getElementById("filterSelect"),
+      selectedValue = select.value;
 
-  var allDivs = document
+  allDivs = document
     .getElementsByClassName("container")[0]
     .getElementsByTagName("div");
   for (var i = 0; i < allDivs.length; i++) {
@@ -76,20 +76,25 @@ function showDiv() {
   }
 }
 
-// Function to open the filter modal by clicking on X button
-function openFilterModal() {
+// Function to open the filter modal by clicking on filter button
+function openFilterModal() 
+{
   var filterModal = document.getElementById("filterModal");
+
   filterModal.style.display = "block";
 }
 
 // Function to close the filter modal by clicking on X button
-function closeFilterModal() {
+function closeFilterModal()
+{
   var filterModal = document.getElementById("filterModal");
+
   filterModal.style.display = "none";
 }
 
 // Function to fetch data and display it in the table
-function fetchDataAndDisplay(endpoint, value, displayFunction) {
+function fetchDataAndDisplay(endpoint, value, displayFunction) 
+{
   const url = `/get_vehicle_tests/?${endpoint}=${value}`;
 
   fetch(url)
@@ -106,11 +111,9 @@ async function fetchAndPopulateDropdown(
   optionTextKey
 ) {
   try {
-    const data = await fetch(`/get_all_data/`).then((response) =>
-      response.json()
-    );
-
-    const dropdown = document.getElementById(dropdownId);
+    const data = await fetch(`/get_all_data/`).then((response) => response.json()),
+          dropdown = document.getElementById(dropdownId);
+          
     dropdown.innerHTML = ""; // Clear existing options
 
     // Extract unique values from the data based on the provided dataKey
@@ -144,7 +147,8 @@ buttons.forEach(button => {
 });
 
 // Functions to fetch data based on filter options
-function getVehicleTests() {
+function getVehicleTests() 
+{
   const selectedVehicles = Array.from(
     document.getElementById("vehicle_ids").selectedOptions
   )
@@ -154,7 +158,8 @@ function getVehicleTests() {
   document.getElementById("clearFilterDiv").style.display = "block";
 }
 
-function getDriverTests() {
+function getDriverTests() 
+{
   const selectedDrivers = Array.from(
     document.getElementById("driver_names").selectedOptions
   )
@@ -164,7 +169,8 @@ function getDriverTests() {
   document.getElementById("clearFilterDiv1").style.display = "block";
 }
 
-function getDriveTrace() {
+function getDriveTrace() 
+{
   const driverTraces = Array.from(
     document.getElementById("drive_trace").selectedOptions
   )
@@ -174,33 +180,41 @@ function getDriveTrace() {
   document.getElementById("clearFilterDiv2").style.display = "block";
 }
 
-function iwr() {
-  const minIWR = document.getElementById("minIWR").value;
-  const maxIWR = document.getElementById("maxIWR").value;
-  const iwrValue = `${minIWR},${maxIWR}`;
+function iwr() 
+{
+  const minIWR = document.getElementById("minIWR").value,
+        maxIWR = document.getElementById("maxIWR").value,
+        iwrValue = `${minIWR},${maxIWR}`;
+
   fetchDataAndDisplay("iwr", iwrValue, displayResults);
   document.getElementById("clearFilterDiv3").style.display = "block";
 }
 
-function totalCOgkm() {
-  const minTotalCOgkm = document.getElementById("minTotalCOgkm").value;
-  const maxTotalCO2gkm = document.getElementById("maxTotalCO2gkm").value;
-  const totalCOgkmValue = `${minTotalCOgkm},${maxTotalCO2gkm}`;
+function totalCOgkm() 
+{
+  const minTotalCOgkm   = document.getElementById("minTotalCOgkm").value,
+        maxTotalCO2gkm  = document.getElementById("maxTotalCO2gkm").value,
+        totalCOgkmValue = `${minTotalCOgkm},${maxTotalCO2gkm}`;
+
   fetchDataAndDisplay("totalCOgkm", totalCOgkmValue, displayResults);
   document.getElementById("clearFilterDiv4").style.display = "block";
 }
 
 
 // Function to handle the click event for multiple select elements in modal options
-function handleMultipleSelectClick(element) {
-    element.addEventListener("mousedown", function (e) {
-        e.preventDefault();
-        var originalScrollTop = this.scrollTop;
-        var clickedOption = e.target;
-        clickedOption.selected = !clickedOption.selected;
-        this.scrollTop = originalScrollTop;
-        return false;
-    });
+function handleMultipleSelectClick(element) 
+{
+  var originalScrollTop,
+      clickedOption;
+      
+  element.addEventListener("mousedown", function (e) {
+                                          e.preventDefault();
+                                          originalScrollTop = this.scrollTop;
+                                          clickedOption = e.target;
+                                          clickedOption.selected = !clickedOption.selected;
+                                          this.scrollTop = originalScrollTop;
+                                          return false;
+                                        });
 }
 // Pass the IDs of the select elements you want to handle for multiple select
 const selectIdsToHandle = ["vehicle_ids", "driver_names", "drive_trace"];
@@ -211,18 +225,21 @@ selectIdsToHandle.forEach(id => {
 });
 
 
-function clearFilter() {
+function clearFilter() 
+{
   // Refresh the page to clear the filter
   location.reload();
 }
 
 // Function to display initial results when the page loads for the first time
-function displayInitialResults() {
+function displayInitialResults() 
+{
   return fetch(`/get_all_data/`).then((response) => response.json());
 }
 
 // Fetch data and display initial results
-function InitialResults(data) {
+function InitialResults(data) 
+{
   const testResultsDiv = document.getElementById("initialData");
   testResultsDiv.innerHTML = "";
 
@@ -339,26 +356,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Function to display filtered results
-function displayResults(data) {
+function displayResults(data)
+{
   headers = headers;
   displayData(data, headers);
 }
 
 // Function to display drivers based on filter
-function displayDrivers(data) {
+function displayDrivers(data) 
+{
   const headers = ["Driver"];
   displayData(data, headers);
 }
 
 // Function to filter data based on search input
-function filterTableData(table, headers, searchTerm) {
+function filterTableData(table, headers, searchTerm) 
+{ 
+  let i,
+      j, 
+      foundMatch;
   const rows = table.getElementsByTagName("tr");
 
-  for (let i = 1; i < rows.length; i++) {
+  for (i = 1; i < rows.length; i++) {
     const row = rows[i];
-    let foundMatch = false;
+    foundMatch = false;
 
-    for (let j = 0; j < headers.length; j++) {
+    for (j = 0; j < headers.length; j++) {
       const cell = row.getElementsByTagName("td")[j];
       if (cell) {
         const cellText = cell.textContent || cell.innerText;
@@ -374,7 +397,8 @@ function filterTableData(table, headers, searchTerm) {
 }
 
 // Function to display filtered data in the table
-function displayData(data, headers) {
+function displayData(data, headers) 
+{
   // Store the table data in the global variable
   tableData = data;
   const testResultsDiv = document.getElementById("testResults");
@@ -486,16 +510,18 @@ function displayData(data, headers) {
 }
 
 // Function to sort table data based on header click
-function sortTableData(table, headers, defaultSortColumn) {
-  let columnIndex = headers.indexOf(defaultSortColumn);
+function sortTableData(table, headers, defaultSortColumn) 
+{
   let rows,
-    switching,
-    i,
-    x,
-    y,
-    shouldSwitch,
-    dir,
-    switchcount = 0;
+      switching,
+      i,
+      x,
+      y,
+      shouldSwitch,
+      dir,
+      switchcount = 0,
+      columnIndex = headers.indexOf(defaultSortColumn);
+
   switching = true;
   dir = "asc"; // Default sorting direction is ascending
 
@@ -538,11 +564,11 @@ function sortTableData(table, headers, defaultSortColumn) {
     }
   }
 
-  // Update header icons based on the sorting direction for all columns
-  const headerRow = table.querySelector("tr");
-  headers.forEach((header, index) => {
-    const th = headerRow.querySelector("th:nth-child(" + (index + 1) + ")");
-    th.innerHTML = header;
+// Update header icons based on the sorting direction for all columns
+const headerRow = table.querySelector("tr");
+headers.forEach((header, index) => {
+  const th = headerRow.querySelector("th:nth-child(" + (index + 1) + ")");
+  th.innerHTML = header;
 
     if (columnIndex === index) {
       th.innerHTML +=
@@ -556,12 +582,14 @@ function sortTableData(table, headers, defaultSortColumn) {
 }
 
 // Function to download data as CSV
-function downloadCSV(headers, data) {
+function downloadCSV(headers, data) 
+{
   const csvContent = `data:text/csv;charset=utf-8,${headers.join(",")}\n${data
-    .map((row) => headers.map((header) => row[header]).join(","))
-    .join("\n")}`;
-  const encodedUri = encodeURI(csvContent);
-  const link = document.createElement("a");
+                        .map((row) => headers.map((header) => row[header]).join(","))
+                        .join("\n")}`,
+        encodedUri = encodeURI(csvContent),
+        link = document.createElement("a");
+        
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", "test_results.csv");
   document.body.appendChild(link);
