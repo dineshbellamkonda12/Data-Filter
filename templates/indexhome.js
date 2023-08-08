@@ -365,7 +365,7 @@ function displayResults(data)
 // Function to display drivers based on filter
 function displayDrivers(data) 
 {
-  const headers = ["Driver"];
+  const headers = ["Cell", "Driver"];
   displayData(data, headers);
 }
 

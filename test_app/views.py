@@ -35,7 +35,7 @@ def get_vehicle_tests(request):
         # If Cell Numbers are provided, filter driver names based on the given cell numbers.
         driver_names = driver_names.split(',')
         if len(driver_names) >= 1: 
-            tests = Test.objects.filter(Cell__in=driver_names).values('Driver').distinct()
+            tests = Test.objects.filter(Cell__in=driver_names).values('Cell', 'Driver').distinct()
             return JsonResponse(list(tests), safe=False)
         else:
             # If no Cell Numbers are provided, return an empty response.
