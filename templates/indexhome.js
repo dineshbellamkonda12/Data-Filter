@@ -549,6 +549,7 @@ function sortTableData(table, headers, defaultSortColumn)
         }
       }
 
+      //Swapping of rows when the sorting condition is met
       if (shouldSwitch) {
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
