@@ -206,12 +206,12 @@ function handleMultipleSelectClick(element)
       clickedOption;
       
   element.addEventListener("mousedown", function (e) {
-                                          e.preventDefault();
-                                          originalScrollTop = this.scrollTop;
-                                          clickedOption = e.target;
-                                          clickedOption.selected = !clickedOption.selected;
-                                          this.scrollTop = originalScrollTop;
-                                          return false;
+                                          e.preventDefault();   // Don't do the usual thing when clicking
+                                          originalScrollTop = this.scrollTop;   // Remember where the list was scrolled
+                                          clickedOption = e.target;     // Remember what you clicked on
+                                          clickedOption.selected = !clickedOption.selected;     // Choose or unchoose option
+                                          this.scrollTop = originalScrollTop;     // Keep the scroll position the same
+                                          return false;     // All done with the special click
                                         });
 }
 // Pass the IDs of the select elements you want to handle for multiple select
