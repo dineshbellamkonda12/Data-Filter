@@ -17,6 +17,7 @@ def get_vehicle_tests(request):
     # Extract query parameters from the request
     vehicle_ids = request.GET.get('vehicle_ids', None)
     driver_names = request.GET.get('driver_names', None)
+    rmsee_id = request.GET.get('rmsee', None)
     drive_trace = request.GET.get('drive_traces', None)
     iwr = request.GET.get('iwr', None)
     totalCOgkm = request.GET.get('totalCOgkm', None)
@@ -57,6 +58,14 @@ def get_vehicle_tests(request):
         if len(iwr_value) == 2:
             iwr_value_1, iwr_value_2 = iwr_value
             tests = Test.objects.filter(Q(IWR__gte=float(iwr_value_1)) & Q(IWR__lte=float(iwr_value_2))).values()
+            return JsonResponse(list(tests), safe=False)
+        
+    if rmsee_id:
+        # If iwr is provided, filter tests based on the given IWR range.
+        rmsee_value = rmsee_id.split(',')
+        if len(rmsee_value) == 2:
+            rmsee_value_1, rmsee_value_2 = rmsee_value
+            tests = Test.objects.filter(Q(RMSSE__gte=float(rmsee_value_1)) & Q(RMSSE__lte=float(rmsee_value_2))).values()
             return JsonResponse(list(tests), safe=False)
         
     if totalCOgkm:

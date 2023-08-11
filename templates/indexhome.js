@@ -156,6 +156,7 @@ function getVehicleTests()
   document.getElementById("clearFilterDiv").style.display = "block";
 }
 
+
 function getDriverTests() 
 {
   const selectedDrivers = Array.from(
@@ -185,6 +186,16 @@ function iwr()
         iwrValue = `${minIWR},${maxIWR}`;
 
   fetchDataAndDisplay("iwr", iwrValue, displayResults);
+  document.getElementById("clearFilterDiv3").style.display = "block";
+}
+
+function rmsee() 
+{
+  const minIWR = document.getElementById("minRMSEE").value,
+        maxIWR = document.getElementById("maxRMSEE").value,
+        rmseeValue = `${minIWR},${maxIWR}`;
+
+  fetchDataAndDisplay("rmsee", rmseeValue, displayResults);
   document.getElementById("clearFilterDiv3").style.display = "block";
 }
 

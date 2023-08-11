@@ -32,6 +32,7 @@
                 <option value="driver_names">Filter the list of Driver Names by Cell Numbers</option>
                 <option value="drive_trace">Filter the list of tests by Drive Traces</option>
                 <option value="iwr">Filter the list of tests between two IWR Values</option>
+                <option value="rmsee">Filter the list of tests between two RMSEE Values</option>
                 <option value="totalCOgkm">Filter the list of tests between TotalCOgkm and TotalCO2gkm</option>
             </select>
 
@@ -89,6 +90,22 @@
                 <input type="number" id="maxIWR" name="maxIWR">
                 <!-- Buttons to interact with the filter -->
                 <button onclick="iwr()" class="closeModal">Get list of tests</button>
+                <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
+                <!-- Button to remove the filter -->
+                <div id="clearFilterDiv3" style="display: none;">
+                    <button onclick="clearFilter()">Remove Filter</button>
+                </div>
+            </div>
+
+            <!-- Section for filtering by IWR values -->
+            <div class="rmsee hidden">
+                <h4>Enter Values</h4>
+                <label for="minIWR">Min RMSEE:</label>
+                <input type="number" id="minRMSEE" name="minIWR">
+                <label for="maxIWR">Max RMSEE:</label>
+                <input type="number" id="maxRMSEE" name="maxIWR">
+                <!-- Buttons to interact with the filter -->
+                <button onclick="rmsee()" class="closeModal">Get list of tests</button>
                 <button onclick="applyFilters()" class="closeModal">Apply filter on previous filtered data</button>
                 <!-- Button to remove the filter -->
                 <div id="clearFilterDiv3" style="display: none;">
