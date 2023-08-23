@@ -1,8 +1,8 @@
 # Project Name
-Chassis Dyno Test Data Filter
+Data Filter
 
 ## Description
-Chassis Dyno Test Data Filter is a web application that allows users to to be able to interact, extract and filter data from the table based on their condition. It is built using Python Django for the backend and HTML, CSS and Javascript for the frontend.
+Data Filter is a web application that allows users to to be able to interact, extract and filter data from the table based on their condition. It is built using Python Django for the backend and HTML, CSS and Javascript for the frontend.
 
 ## Installation
 Follow the instructions below to get the project up and running on your local machine.
